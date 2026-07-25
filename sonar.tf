@@ -41,8 +41,13 @@ resource "aws_instance" "mySonarInstance" {
 
 # Create Elastic IP address for Sonar instance
 resource "aws_eip" "mySonarInstance" {
-  vpc      = true
   instance = aws_instance.mySonarInstance.id
+  domain   = "vpc"
+
+  tags = {
+    Name = "sonar_elastic_ip"
+  }
+}
 tags= {
     Name = "sonar_elastic_ip"
   }
