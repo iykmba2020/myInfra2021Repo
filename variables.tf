@@ -4,7 +4,7 @@ variable "aws_region" {
 }
 
 variable "key_name" {
-  description = "SSH key pair for EC2 instances."
+  description = "SSH key to connect to EC2 instances."
   default     = "myjenkinskey"
 }
 
@@ -14,18 +14,18 @@ variable "instance_type" {
 }
 
 variable "security_group" {
-  description = "Name of the Jenkins security group."
+  description = "Name of the security group."
   default     = "jenkins-sgroup-dec-2021"
 }
 
 variable "tag_name" {
-  description = "Tag name for the EC2 instance."
+  description = "EC2 instance tag."
   default     = "my-ec2-instance"
 }
 
 variable "ami_id" {
-  description = "Ubuntu AMI ID for us-east-2."
-  default     = "ami-0d1b5a8c13042c939"
+  description = "Ubuntu 22.04 AMI for us-east-2."
+  default     = "ami-074d6ada17cb05dff"
 }
 
 variable "versioning" {
@@ -42,13 +42,13 @@ variable "acl" {
 
 variable "bucket_prefix" {
   type        = string
-  description = "Unique prefix for the S3 bucket."
+  description = "Creates a unique S3 bucket name."
   default     = "my-s3bucket-"
 }
 
 variable "tags" {
   type        = map(string)
-  description = "Tags applied to the S3 bucket."
+  description = "Tags for the S3 bucket."
 
   default = {
     environment = "DEV"
