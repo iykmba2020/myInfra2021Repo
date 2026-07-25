@@ -1,51 +1,57 @@
 variable "aws_region" {
-       description = "The AWS region to create things in." 
-       default     = "us-east-1" 
+  description = "The AWS region to create resources in."
+  default     = "us-east-2"
 }
 
-variable "key_name" { 
-    description = " SSH keys to connect to ec2 instance" 
-    default     =  "mySep22Key" 
+variable "key_name" {
+  description = "SSH key pair for EC2 instances."
+  default     = "myjenkinskey"
 }
 
-variable "instance_type" { 
-    description = "instance type for ec2" 
-    default     =  "t2.micro" 
+variable "instance_type" {
+  description = "EC2 instance type."
+  default     = "t2.micro"
 }
 
-variable "security_group" { 
-    description = "Name of security group" 
-    default     = "jenkins-sgroup-dec-2021" 
+variable "security_group" {
+  description = "Name of the Jenkins security group."
+  default     = "jenkins-sgroup-dec-2021"
 }
 
-variable "tag_name" { 
-    description = "Tag Name of for Ec2 instance" 
-    default     = "my-ec2-instance" 
-} 
-variable "ami_id" { 
-    description = "AMI for Ubuntu Ec2 instance" 
-    default     = "ami-0ee23bfc74a881de5" 
+variable "tag_name" {
+  description = "Tag name for the EC2 instance."
+  default     = "my-ec2-instance"
 }
+
+variable "ami_id" {
+  description = "Ubuntu AMI ID for us-east-2."
+  default     = "ami-0d1b5a8c13042c939"
+}
+
 variable "versioning" {
-    type        = bool
-    description = "(Optional) A state of versioning."
-    default     = true
+  type        = bool
+  description = "Enable S3 bucket versioning."
+  default     = true
 }
+
 variable "acl" {
-    type        = string
-    description = " Defaults to private "
-    default     = "private"
+  type        = string
+  description = "S3 bucket ACL."
+  default     = "private"
 }
+
 variable "bucket_prefix" {
-    type        = string
-    description = "(required since we are not using 'bucket') Creates a unique bucket name beginning with the specified prefix"
-    default     = "my-s3bucket-"
+  type        = string
+  description = "Unique prefix for the S3 bucket."
+  default     = "my-s3bucket-"
 }
+
 variable "tags" {
-    type        = map
-    description = "(Optional) A mapping of tags to assign to the bucket."
-    default     = {
-        environment = "DEV"
-        terraform   = "true"
-    }
+  type        = map(string)
+  description = "Tags applied to the S3 bucket."
+
+  default = {
+    environment = "DEV"
+    terraform   = "true"
+  }
 }
